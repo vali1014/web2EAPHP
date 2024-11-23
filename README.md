@@ -1,0 +1,1 @@
+A beadandó feladat egy PHP webalkalmazás megvalósítása.
