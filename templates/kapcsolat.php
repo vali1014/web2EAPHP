@@ -19,7 +19,7 @@ include __DIR__ . '/../api/db.php';
     <div id="header">
         <span class="logo icon fa-paper-plane"></span>
         <h1>Kapcsolat</h1>
-        <p>Elérhetőségeink és kapcsolatfelvételi űrlap.</p>
+        <p>Elérhetőségeink.</p>
     </div>
 
     <!-- Main -->
