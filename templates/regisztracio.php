@@ -49,25 +49,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regisztráció</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title><?php echo $title; ?></title>
+    <link rel="stylesheet" href="/web2EAPHP/assets/css/main.css" />
+    <link rel="stylesheet" href="/web2EAPHP/style.css">
 </head>
-<body>
-    <div class="form-container">
-        <h2>Regisztráció</h2>
-        <form method="post" action="regisztracio.php">
-            Felhasználónév: <input type="text" name="nev" required><br>
-            Jelszó: <input type="password" name="jelszo" required><br>
-            <input type="submit" value="Regisztrálok">
-        </form>
-        <p><?php echo $message; ?></p>
-        <p>Ha már van fiókja, <a href="bejelentkezes.php">jelentkezzen be</a>.</p>
+<body class="is-preload">
+
+    <!-- Header -->
+    <div id="header">
+        <span class="logo icon fa-paper-plane"></span>
+        <h1>Regisztráció</h1>
+        <p>Üdvözöljük a regisztrációs oldalon!</p>
     </div>
+
+    <!-- Main -->
+    <div id="main">
+        <header class="major container medium">
+            <h2>Regisztrálj, hogy hozzáférj a szélerőművekkel kapcsolatos információkhoz!</h2>
+        </header>
+
+        <div class="box alt container">
+            <section class="feature left">
+                <div class="content">
+                    <form method="post" action="regisztracio.php">
+                        <label for="nev">Felhasználónév:</label>
+                        <input type="text" name="nev" id="nev" required><br>
+                        <label for="jelszo">Jelszó:</label>
+                        <input type="password" name="jelszo" id="jelszo" required><br>
+                        <input type="submit" value="Regisztrálok">
+                    </form>
+                    <p><?php echo $message; ?></p>
+                    <p>Ha már van fiókja, <a href="bejelentkezes.php">jelentkezzen be</a>.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/web2EAPHP/assets/js/jquery.min.js"></script>
+    <script src="/web2EAPHP/assets/js/browser.min.js"></script>
+    <script src="/web2EAPHP/assets/js/breakpoints.min.js"></script>
+    <script src="/web2EAPHP/assets/js/util.js"></script>
+    <script src="/web2EAPHP/assets/js/main.js"></script>
+
 </body>
 </html>
 

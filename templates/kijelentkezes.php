@@ -1,9 +1,4 @@
 <?php
-$title = "Bejelentkezés";
-include __DIR__ . '/header.php';
-?>
-
-<?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -35,4 +30,40 @@ header("Location: /web2EAPHP/index.php");
 exit;
 ?>
 
-<?php include __DIR__ . '/footer.php'; ?>
+<!DOCTYPE HTML>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Kijelentkezés</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-preload">
+
+    <!-- Header -->
+    <div id="header">
+        <span class="logo icon fa-paper-plane"></span>
+        <h1>Kijelentkezés</h1>
+        <p>Üdvözöljük a kijelentkezési oldalon!</p>
+    </div>
+
+    <!-- Main -->
+    <div id="main">
+        <div class="form-container">
+            <h2>Kijelentkezés</h2>
+            <form method="post" action="kijelentkezes.php">
+                <input type="submit" value="Kijelentkezés">
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>

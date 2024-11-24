@@ -48,33 +48,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message = "Hibás jelszó";
         }
     } else {
-        $message = "Nincs ilyen felhasználó";
+        echo "<script>alert('Nincs ilyen felhasználó');</script>";
     }
 }
 
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bejelentkezés</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title><?php echo $title; ?></title>
+    <link rel="stylesheet" href="/web2EAPHP/assets/css/main.css" />
     <link rel="stylesheet" href="/web2EAPHP/style.css">
 </head>
-<body>
-    <div class="form-container">
-        <h2>Bejelentkezés</h2>
-        <form method="post" action="bejelentkezes.php">
-            Felhasználónév: <input type="text" name="nev" required><br>
-            Jelszó: <input type="password" name="jelszo" required><br>
-            <input type="submit" value="Bejelentkezek">
-        </form>
-        <p><?php echo $message; ?></p>
+<body class="is-preload">
+
+    <!-- Header -->
+    <div id="header">
+        <span class="logo icon fa-paper-plane"></span>
+        <h1>Bejelentkezés</h1>
+        <p>Üdvözöljük a bejelentkezési oldalon!</p>
     </div>
+
+    <!-- Main -->
+    <div id="main">
+        <header class="major container medium">
+            <h2>Jelentkezz be, hogy hozzáférj a szélerőművekkel kapcsolatos információkhoz!</h2>
+        </header>
+
+        <div class="box alt container">
+            <section class="feature left">
+                <div class="content">
+                    <form method="post" action="bejelentkezes.php">
+                        <label for="nev">Felhasználónév:</label>
+                        <input type="text" name="nev" id="nev" required><br>
+                        <label for="jelszo">Jelszó:</label>
+                        <input type="password" name="jelszo" id="jelszo" required><br>
+                        <input type="submit" value="Bejelentkezek">
+                    </form>
+                    <p><?php echo $message; ?></p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/web2EAPHP/assets/js/jquery.min.js"></script>
+    <script src="/web2EAPHP/assets/js/browser.min.js"></script>
+    <script src="/web2EAPHP/assets/js/breakpoints.min.js"></script>
+    <script src="/web2EAPHP/assets/js/util.js"></script>
+    <script src="/web2EAPHP/assets/js/main.js"></script>
+
 </body>
 </html>
-
 
 <?php include __DIR__ . '/footer.php'; ?>
