@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Nov 23. 23:01
+-- Létrehozás ideje: 2024. Nov 24. 09:48
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `szeleromuvek`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `felhasznalok`
+--
+
+CREATE TABLE `felhasznalok` (
+  `id` int(11) NOT NULL,
+  `nev` varchar(50) NOT NULL,
+  `jelszo` varchar(255) NOT NULL,
+  `admin` enum('igen','nem') DEFAULT 'nem',
+  `bejelentkezve` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `felhasznalok`
+--
+
+INSERT INTO `felhasznalok` (`id`, `nev`, `jelszo`, `admin`, `bejelentkezve`) VALUES
+(1, 'abc123def456', '$2y$10$MAKQynZab7CoACALKQZEa.vxez1shlNDSTXAGQc3oLJuIajWpwu6u', 'nem', 0),
+(3, 'admin', '$2y$10$OATHFXfTN58MMZkzFub4Ze5TqOyxRlv0rrW5kW9Egj8WU.LZK3YVC', 'igen', 1);
 
 -- --------------------------------------------------------
 
@@ -118,21 +140,23 @@ CREATE TABLE `menunevek` (
   `id` int(11) NOT NULL,
   `nev` varchar(255) NOT NULL,
   `link` varchar(255) DEFAULT NULL,
-  `parent_id` int(11) DEFAULT NULL
+  `parent_id` int(11) DEFAULT NULL,
+  `megjelenik` enum('mindig','bejelentkezve','kijelentkezes') DEFAULT 'mindig'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `menunevek`
 --
 
-INSERT INTO `menunevek` (`id`, `nev`, `link`, `parent_id`) VALUES
-(1, 'szélerőművek', 'szeleromuvek.php', NULL),
-(2, 'rólunk', 'rolunk.php', NULL),
-(3, 'kapcsolat', 'kapcsolat.php', NULL),
-(4, 'regisztráció', 'regisztracio.php', NULL),
-(5, 'bejelentkezés', 'bejelentkezes.php', NULL),
-(6, 'szélenergia', 'szelenergia.php', 1),
-(7, 'szélfarm', 'szelfarm.php', 1);
+INSERT INTO `menunevek` (`id`, `nev`, `link`, `parent_id`, `megjelenik`) VALUES
+(1, 'szélerőművek', 'szeleromuvek.php', NULL, 'mindig'),
+(2, 'rólunk', 'rolunk.php', NULL, 'mindig'),
+(3, 'kapcsolat', 'kapcsolat.php', NULL, 'mindig'),
+(4, 'regisztráció', 'regisztracio.php', NULL, 'kijelentkezes'),
+(5, 'bejelentkezés', 'bejelentkezes.php', NULL, 'kijelentkezes'),
+(6, 'szélenergia', 'szelenergia.php', 1, 'mindig'),
+(7, 'szélfarm', 'szelfarm.php', 1, 'mindig'),
+(8, 'kijelentkezes', 'kijelentkezes.php', NULL, 'bejelentkezve');
 
 -- --------------------------------------------------------
 
@@ -203,6 +227,12 @@ INSERT INTO `torony` (`id`, `darab`, `teljesitmeny`, `kezdev`, `helyszinid`) VAL
 --
 
 --
+-- A tábla indexei `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- A tábla indexei `helyszin`
 --
 ALTER TABLE `helyszin`
@@ -231,6 +261,12 @@ ALTER TABLE `torony`
 --
 -- A kiírt táblák AUTO_INCREMENT értéke
 --
+
+--
+-- AUTO_INCREMENT a táblához `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `helyszin`
