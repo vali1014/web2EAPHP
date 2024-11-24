@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Nov 24. 09:48
+-- Létrehozás ideje: 2024. Nov 24. 11:34
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -40,8 +40,8 @@ CREATE TABLE `felhasznalok` (
 --
 
 INSERT INTO `felhasznalok` (`id`, `nev`, `jelszo`, `admin`, `bejelentkezve`) VALUES
-(1, 'abc123def456', '$2y$10$MAKQynZab7CoACALKQZEa.vxez1shlNDSTXAGQc3oLJuIajWpwu6u', 'nem', 0),
-(3, 'admin', '$2y$10$OATHFXfTN58MMZkzFub4Ze5TqOyxRlv0rrW5kW9Egj8WU.LZK3YVC', 'igen', 1);
+(1, 'abc123def456', '$2y$10$MAKQynZab7CoACALKQZEa.vxez1shlNDSTXAGQc3oLJuIajWpwu6u', 'nem', 1),
+(3, 'admin', '$2y$10$OATHFXfTN58MMZkzFub4Ze5TqOyxRlv0rrW5kW9Egj8WU.LZK3YVC', 'igen', 0);
 
 -- --------------------------------------------------------
 
@@ -151,12 +151,14 @@ CREATE TABLE `menunevek` (
 INSERT INTO `menunevek` (`id`, `nev`, `link`, `parent_id`, `megjelenik`) VALUES
 (1, 'szélerőművek', 'szeleromuvek.php', NULL, 'mindig'),
 (2, 'rólunk', 'rolunk.php', NULL, 'mindig'),
-(3, 'kapcsolat', 'kapcsolat.php', NULL, 'mindig'),
+(3, 'kijelentkezes', 'kijelentkezes.php', NULL, 'bejelentkezve'),
 (4, 'regisztráció', 'regisztracio.php', NULL, 'kijelentkezes'),
 (5, 'bejelentkezés', 'bejelentkezes.php', NULL, 'kijelentkezes'),
 (6, 'szélenergia', 'szelenergia.php', 1, 'mindig'),
 (7, 'szélfarm', 'szelfarm.php', 1, 'mindig'),
-(8, 'kijelentkezes', 'kijelentkezes.php', NULL, 'bejelentkezve');
+(8, 'kapcsolat', 'kapcsolat.php', NULL, 'bejelentkezve'),
+(9, 'MNB', 'MNB.php', NULL, 'bejelentkezve'),
+(10, 'PDF', 'PDF.php', NULL, 'bejelentkezve');
 
 -- --------------------------------------------------------
 
@@ -284,7 +286,7 @@ ALTER TABLE `megye`
 -- AUTO_INCREMENT a táblához `menunevek`
 --
 ALTER TABLE `menunevek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT a táblához `torony`
