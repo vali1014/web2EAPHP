@@ -41,7 +41,7 @@ CREATE TABLE `felhasznalok` (
 
 INSERT INTO `felhasznalok` (`id`, `nev`, `jelszo`, `admin`, `bejelentkezve`) VALUES
 (1, 'abc123def456', '$2y$10$MAKQynZab7CoACALKQZEa.vxez1shlNDSTXAGQc3oLJuIajWpwu6u', 'nem', 1),
-(3, 'admin', '$2y$10$OATHFXfTN58MMZkzFub4Ze5TqOyxRlv0rrW5kW9Egj8WU.LZK3YVC', 'igen', 0);
+(2, 'admin', '$2y$10$OATHFXfTN58MMZkzFub4Ze5TqOyxRlv0rrW5kW9Egj8WU.LZK3YVC', 'igen', 0);
 
 -- --------------------------------------------------------
 
@@ -151,14 +151,14 @@ CREATE TABLE `menunevek` (
 INSERT INTO `menunevek` (`id`, `nev`, `link`, `parent_id`, `megjelenik`) VALUES
 (1, 'szélerőművek', 'szeleromuvek.php', NULL, 'mindig'),
 (2, 'rólunk', 'rolunk.php', NULL, 'mindig'),
-(3, 'kijelentkezes', 'kijelentkezes.php', NULL, 'bejelentkezve'),
-(4, 'regisztráció', 'regisztracio.php', NULL, 'kijelentkezes'),
-(5, 'bejelentkezés', 'bejelentkezes.php', NULL, 'kijelentkezes'),
-(6, 'szélenergia', 'szelenergia.php', 1, 'mindig'),
-(7, 'szélfarm', 'szelfarm.php', 1, 'mindig'),
-(8, 'kapcsolat', 'kapcsolat.php', NULL, 'bejelentkezve'),
-(9, 'MNB', 'MNB.php', NULL, 'bejelentkezve'),
-(10, 'PDF', 'PDF.php', NULL, 'bejelentkezve');
+(3, 'szélenergia', 'szelenergia.php', 1, 'mindig'),
+(4, 'szélfarm', 'szelfarm.php', 1, 'mindig'),
+(5, 'kapcsolat', 'kapcsolat.php', NULL, 'bejelentkezve'),
+(6, 'MNB', 'MNB.php', NULL, 'bejelentkezve'),
+(7, 'PDF', 'PDF.php', NULL, 'bejelentkezve'),
+(8, 'regisztráció', 'regisztracio.php', NULL, 'kijelentkezes'),
+(9, 'bejelentkezés', 'bejelentkezes.php', NULL, 'kijelentkezes'),
+(10, 'kijelentkezés', 'kijelentkezes.php', NULL, 'bejelentkezve');
 
 -- --------------------------------------------------------
 

@@ -1,14 +1,85 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once "../config/config.php";
+
+error_reporting(0);
+ob_start();
+require_once '../TCPDF/tcpdf.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $selected_regio = $_POST['regio'];
+    $selected_helyszin = $_POST['helyszin'];
+    $selected_toronyszam = $_POST['toronyszam'];
+
+    // Kapcsolódás az adatbázishoz
+    $conn = new mysqli(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
+    $conn->set_charset("utf8");
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Régiók lekérése
+    $regio_query = "SELECT id, nev, regio FROM megye WHERE regio = '$selected_regio'";
+    $regio_result = $conn->query($regio_query);
+
+    // Helyszínek lekérése
+    $helyszin_query = "SELECT id, nev, megyeid FROM helyszin WHERE nev = '$selected_helyszin'";
+    $helyszin_result = $conn->query($helyszin_query);
+
+    // Toronyszámok lekérése
+    $torony_query = "SELECT darab, teljesitmeny, kezdev, helyszinid FROM torony WHERE darab = '$selected_toronyszam'";
+    $torony_result = $conn->query($torony_query);
+
+    // PDF generálása
+    $pdf = new TCPDF();
+    $pdf->AddPage();
+
+    // Fejléc
+    $pdf->SetFont('helvetica', 'B', 12);
+    $pdf->Cell(0, 10, 'PDF generáló eredmények', 0, 1, 'C');
+
+    // Régió adatok hozzáadása
+    $pdf->SetFont('helvetica', 'B', 12);
+    $pdf->Cell(0, 10, 'Régió: ' . $selected_regio, 0, 1, 'L');
+    $pdf->SetFont('helvetica', '', 12);
+    while ($row = $regio_result->fetch_assoc()) {
+        $pdf->MultiCell(0, 10, "ID: " . $row['id'] . ", Név: " . $row['nev'] . ", Régió: " . $row['regio']);
+    }
+
+    // Helyszín adatok hozzáadása
+    $pdf->SetFont('helvetica', 'B', 12);
+    $pdf->Cell(0, 10, 'Helyszín: ' . $selected_helyszin, 0, 1, 'L');
+    $pdf->SetFont('helvetica', '', 12);
+    while ($row = $helyszin_result->fetch_assoc()) {
+        $pdf->MultiCell(0, 10, "ID: " . $row['id'] . ", Név: " . $row['nev'] . ", Megye ID: " . $row['megyeid']);
+    }
+
+    // Toronyszám adatok hozzáadása
+    $pdf->SetFont('helvetica', 'B', 12);
+    $pdf->Cell(0, 10, 'Toronyszám: ' . $selected_toronyszam, 0, 1, 'L');
+    $pdf->SetFont('helvetica', '', 12);
+    while ($row = $torony_result->fetch_assoc()) {
+        $pdf->MultiCell(0, 10, "Darab: " . $row['darab'] . ", Teljesítmény: " . $row['teljesitmeny'] . ", Kezdés éve: " . $row['kezdev'] . ", Helyszín ID: " . $row['helyszinid']);
+    }
+
+    // PDF mentése és letöltése
+    ob_end_clean();
+    $pdf->Output('generated_pdf.pdf', 'D');
+
+    $conn->close();
+    exit;
+}
+
 $title = "PDF";
 include __DIR__ . '/header.php';
 
-// Adatbázis kapcsolat létrehozása
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "szeleromuvek";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Kapcsolódás az adatbázishoz
+$conn = new mysqli(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
+$conn->set_charset("utf8");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -33,8 +104,8 @@ $torony_result = $conn->query($torony_query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title><?php echo $title; ?></title>
-    <link rel="stylesheet" href="/web2EAPHP/assets/css/main.css" />
-    <link rel="stylesheet" href="/web2EAPHP/style.css">
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/style.css">
     <style>
         .container-box {
             max-width: 800px;
@@ -104,88 +175,11 @@ $torony_result = $conn->query($torony_query);
     </div>
 
     <!-- Scripts -->
-    <script src="/web2EAPHP/assets/js/jquery.min.js"></script>
-    <script src="/web2EAPHP/assets/js/browser.min.js"></script>
-    <script src="/web2EAPHP/assets/js/breakpoints.min.js"></script>
-    <script src="/web2EAPHP/assets/js/util.js"></script>
-    <script src="/web2EAPHP/assets/js/main.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
 
 </body>
 </html>
-
-<?php include __DIR__ . '/footer.php'; ?>
-
-<?php
-error_reporting(0);
-ob_start();
-require_once('../TCPDF/tcpdf.php');
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $selected_regio = $_POST['regio'];
-    $selected_helyszin = $_POST['helyszin'];
-    $selected_toronyszam = $_POST['toronyszam'];
-
-    // Adatbázis kapcsolat létrehozása
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "szeleromuvek";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Régiók lekérése
-    $regio_query = "SELECT id, nev, regio FROM megye WHERE regio = '$selected_regio'";
-    $regio_result = $conn->query($regio_query);
-
-    // Helyszínek lekérése
-    $helyszin_query = "SELECT id, nev, megyeid FROM helyszin WHERE nev = '$selected_helyszin'";
-    $helyszin_result = $conn->query($helyszin_query);
-
-    // Toronyszámok lekérése
-    $torony_query = "SELECT darab, teljesitmeny, kezdev, helyszinid FROM torony WHERE darab = '$selected_toronyszam'";
-    $torony_result = $conn->query($torony_query);
-
-    // PDF generálása
-    $pdf = new TCPDF();
-    $pdf->AddPage();
-
-    // Fejléc
-    $pdf->SetFont('helvetica', 'B', 12);
-    $pdf->Cell(0, 10, 'PDF generáló eredmények', 0, 1, 'C');
-
-    // Régió adatok hozzáadása
-    $pdf->SetFont('helvetica', 'B', 12);
-    $pdf->Cell(0, 10, 'Régió:', 0, 1, 'L');
-    $pdf->SetFont('helvetica', '', 12);
-    while ($row = $regio_result->fetch_assoc()) {
-        $pdf->MultiCell(0, 10, "ID: " . $row['id'] . ", Név: " . $row['nev'] . ", Régió: " . $row['regio']);
-    }
-
-    // Helyszín adatok hozzáadása
-    $pdf->SetFont('helvetica', 'B', 12);
-    $pdf->Cell(0, 10, 'Helyszín:', 0, 1, 'L');
-    $pdf->SetFont('helvetica', '', 12);
-    while ($row = $helyszin_result->fetch_assoc()) {
-        $pdf->MultiCell(0, 10, "ID: " . $row['id'] . ", Név: " . $row['nev'] . ", Megye ID: " . $row['megyeid']);
-    }
-
-    // Toronyszám adatok hozzáadása
-    $pdf->SetFont('helvetica', 'B', 12);
-    $pdf->Cell(0, 10, 'Toronyszám:', 0, 1, 'L');
-    $pdf->SetFont('helvetica', '', 12);
-    while ($row = $torony_result->fetch_assoc()) {
-        $pdf->MultiCell(0, 10, "Darab: " . $row['darab'] . ", Teljesítmény: " . $row['teljesitmeny'] . ", Kezdés éve: " . $row['kezdev'] . ", Helyszín ID: " . $row['helyszinid']);
-    }
-
-    // PDF mentése és letöltése
-    ob_end_clean();
-    $pdf->Output('generated_pdf.pdf', 'D');
-
-    $conn->close();
-    exit;
-}
-?>

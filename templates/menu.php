@@ -1,15 +1,8 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "szeleromuvek";
 
 // Kapcsolódás az adatbázishoz
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
+$conn->set_charset("utf8");
 
 // Kapcsolat ellenőrzése
 if ($conn->connect_error) {
@@ -47,11 +40,11 @@ if (!function_exists('renderMenu')) {
 
             if ($show_item) {
                 echo '<li>';
-                echo '<a href="/web2EAPHP/templates/' . $item['link'] . '">' . $item['nev'] . '</a>';
+                echo '<a href="/templates/' . $item['link'] . '">' . $item['nev'] . '</a>';
                 if (!empty($item['children'])) {
                     echo '<ul>';
                     foreach ($item['children'] as $child) {
-                        echo '<li><a href="/web2EAPHP/templates/' . $child['link'] . '">' . $child['nev'] . '</a></li>';
+                        echo '<li><a href="/templates/' . $child['link'] . '">' . $child['nev'] . '</a></li>';
                     }
                     echo '</ul>';
                 }

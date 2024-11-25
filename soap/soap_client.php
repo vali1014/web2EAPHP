@@ -1,7 +1,7 @@
 <?php
 $options = [
-    'uri' => 'http://localhost/web2EAPHP/soap/soap_server.php',
-    'location' => 'http://localhost/web2EAPHP/soap/soap_server.php'
+    'uri' => 'http://localhost/soap/soap_server.php',
+    'location' => 'http://localhost/soap/soap_server.php'
 ];
 
 $client = new SoapClient(null, $options);

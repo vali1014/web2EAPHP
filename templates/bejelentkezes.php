@@ -1,20 +1,14 @@
 <?php
-$title = "Bejelentkezés";
-include __DIR__ . '/header.php';
-?>
-
-<?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "szeleromuvek";
+$title = "Bejelentkezés";
+
+require_once "../config/config.php";
 
 // Kapcsolódás az adatbázishoz
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
 
 // Kapcsolat ellenőrzése
 if ($conn->connect_error) {
@@ -42,8 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $update_sql = "UPDATE felhasznalok SET bejelentkezve = TRUE WHERE id = " . $row['id'];
             $conn->query($update_sql);
 
-            header("Location: /web2EAPHP/index.php"); // Irányítás a főoldalra
-            exit;
+            header("Location: /index.php");
+            exit();
         } else {
             $message = "Hibás jelszó";
         }
@@ -53,6 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
+
+include __DIR__ . '/header.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -61,8 +57,8 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title><?php echo $title; ?></title>
-    <link rel="stylesheet" href="/web2EAPHP/assets/css/main.css" />
-    <link rel="stylesheet" href="/web2EAPHP/style.css">
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body class="is-preload">
 
@@ -96,13 +92,11 @@ $conn->close();
     </div>
 
     <!-- Scripts -->
-    <script src="/web2EAPHP/assets/js/jquery.min.js"></script>
-    <script src="/web2EAPHP/assets/js/browser.min.js"></script>
-    <script src="/web2EAPHP/assets/js/breakpoints.min.js"></script>
-    <script src="/web2EAPHP/assets/js/util.js"></script>
-    <script src="/web2EAPHP/assets/js/main.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
 
 </body>
 </html>
-
-<?php include __DIR__ . '/footer.php'; ?>

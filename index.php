@@ -1,3 +1,9 @@
+<?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
+
 <!DOCTYPE HTML>
 <html lang="hu">
 <head>
@@ -20,8 +26,8 @@
     <div id="main">
 
         <!-- Include the menu and szeleromuvek.php content -->
-        <?php include __DIR__ . '/templates/menu.php'; ?>
-        <?php include __DIR__ . '/templates/szeleromuvek.php'; ?>
+        <?php include __DIR__ . '/templates/header.php';?>
+        <?php include __DIR__ . '/templates/szeleromuvek.php';?>
 
     </div>
 

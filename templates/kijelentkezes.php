@@ -3,13 +3,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "szeleromuvek";
+require_once "../config/config.php";
 
 // Kapcsolódás az adatbázishoz
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
 
 // Kapcsolat ellenőrzése
 if ($conn->connect_error) {
@@ -26,7 +23,7 @@ if (isset($_SESSION['nev'])) {
     session_destroy();
 }
 
-header("Location: /web2EAPHP/index.php");
+header("Location: /index.php");
 exit;
 ?>
 

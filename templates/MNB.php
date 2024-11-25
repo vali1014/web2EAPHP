@@ -1,4 +1,8 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $title = "MNB";
 include __DIR__ . '/header.php';
 ?>
@@ -9,8 +13,8 @@ include __DIR__ . '/header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title><?php echo $title; ?></title>
-    <link rel="stylesheet" href="/web2EAPHP/assets/css/main.css" />
-    <link rel="stylesheet" href="/web2EAPHP/style.css">
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body class="is-preload">
 
@@ -109,7 +113,7 @@ if (isset($_POST['month']) && isset($_POST['currencyPair'])) {
 
         foreach ($xml->Day as $day) {
             $date = (string)$day['date'];
-            $rate = (string)$day->Rate;
+            $rate = (double)$day->Rate;
             $rates[$date] = $rate;
         }
 
@@ -171,13 +175,11 @@ if (isset($_POST['month']) && isset($_POST['currencyPair'])) {
     </div>
 
     <!-- Scripts -->
-    <script src="/web2EAPHP/assets/js/jquery.min.js"></script>
-    <script src="/web2EAPHP/assets/js/browser.min.js"></script>
-    <script src="/web2EAPHP/assets/js/breakpoints.min.js"></script>
-    <script src="/web2EAPHP/assets/js/util.js"></script>
-    <script src="/web2EAPHP/assets/js/main.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
 
 </body>
 </html>
-
-<?php include __DIR__ . '/footer.php'; ?>
