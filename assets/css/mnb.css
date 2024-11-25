@@ -1,0 +1,9 @@
+input {
+    width: 100% !important;
+}
+
+table {
+    th, td {
+        text-align: center;
+    }
+}

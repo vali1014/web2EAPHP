@@ -3,7 +3,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $title = "Kapcsolat";
-include __DIR__ . '/header.php';
 include __DIR__ . '/../api/db.php';
 ?>
 
@@ -14,9 +13,11 @@ include __DIR__ . '/../api/db.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/kapcsolat.css" />
     <link rel="stylesheet" href="/style.css">
 </head>
 <body class="is-preload">
+    <?php include __DIR__ . '/header.php'; ?>
 
     <!-- Header -->
     <div id="header">
@@ -26,27 +27,25 @@ include __DIR__ . '/../api/db.php';
     </div>
 
     <!-- Main -->
-    <div id="main">
-        <header class="major container medium">
+    <div id="main" class="container">
+        <header class="major medium">
             <h2>Elérhetőségeink</h2>
         </header>
 
-        <div class="box alt container">
-            <section class="feature left">
-                <div class="content">
-                    <h3>EgyikNév</h3>
-                    <p>NEPTUNKÓD</p>
-                    <p>EMAILCÍM</p>
-                </div>
-            </section>
-            <section class="feature left">
-                <div class="content">
-                    <h3>MásikNév</h3>
-                    <p>NEPTUNKÓD</p>
-                    <p>EMAILCÍM</p>
-                </div>
-            </section>
-        </div>
+        <section class="feature left">
+            <div class="content">
+                <h3>Dunai Valéria</h3>
+                <p>NEPTUNKÓD</p>
+                <p>vali1014</p>
+                <p>dunai.valeria@gmail.com</p>
+            </div>
+            <div class="content">
+                <h3>Dunai Valéria</h3>
+                <p>NEPTUNKÓD</p>
+                <p>valisecond</p>
+                <p>valcseszka1369@gmail.com</p>
+            </div>
+        </section>
     </div>
 
     <!-- Scripts -->
@@ -55,6 +54,5 @@ include __DIR__ . '/../api/db.php';
     <script src="/assets/js/breakpoints.min.js"></script>
     <script src="/assets/js/util.js"></script>
     <script src="/assets/js/main.js"></script>
-
 </body>
 </html>

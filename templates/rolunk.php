@@ -4,7 +4,6 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 $title = "Rólunk";
-include __DIR__ . '/header.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -17,6 +16,7 @@ include __DIR__ . '/header.php';
     <link rel="stylesheet" href="/style.css">
 </head>
 <body class="is-preload">
+    <?php include __DIR__ . '/header.php'; ?>
 
     <!-- Header -->
     <div id="header">
@@ -27,22 +27,23 @@ include __DIR__ . '/header.php';
 
     <!-- Main -->
     <div id="main">
-
         <header class="major container medium">
             <h2>Webalkalmazásunkat a Web-Programozás II. kurzus sikeres teljesítéséhez készítettük.
             <br />
             Projektünk a magyarországi szélerőművekkel foglalkozik.</h2>
         </header>
 
-        <div class="box alt container">
-            <section class="feature left">
+        <div class="container box">
+            <section class="feature right">
+                <a href="#" class="image icon solid fa-user-friends"><img src="/images/pic01.jpg" alt="" /></a>
                 <div class="content">
                     <h3>Készítették:</h3>
-                    <p class="text-muted">Nevek</p>
+                    <p class="text-muted">Dunai Valéria</p>
                     <p class="text-muted">Neumann János Egyetem, Kecskemét</p>
                 </div>
             </section>
-            <section class="feature right">
+            <section class="feature left">
+                <a href="#" class="image icon solid fa-database"><img src="/images/pic02.jpg" alt="" /></a>
                 <div class="content">
                     <h3>Választott adatbázis:</h3>
                     <p class="text-muted">Szélerőművek</p>

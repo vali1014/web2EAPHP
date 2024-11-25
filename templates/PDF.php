@@ -75,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $title = "PDF";
-include __DIR__ . '/header.php';
 
 // Kapcsolódás az adatbázishoz
 $conn = new mysqli(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
@@ -133,6 +132,7 @@ $torony_result = $conn->query($torony_query);
     </style>
 </head>
 <body class="is-preload">
+    <?php include __DIR__ . '/header.php'; ?>
 
     <!-- Header -->
     <div id="header">
@@ -142,36 +142,40 @@ $torony_result = $conn->query($torony_query);
     </div>
 
     <!-- Main -->
-    <div id="main" class="container-box">
+    <div id="main">
         <header class="major container medium">
             <h2>PDF generáló</h2>
         </header>
 
-        <!-- Lenyíló listák -->
-        <form method="post" action="">
+      <div class="container">
+        <section class="box">
+          <!-- Lenyíló listák -->
+          <form method="post" action="">
             <label for="regio">Régió:</label>
             <select name="regio" id="regio">
                 <?php while($row = $regio_result->fetch_assoc()): ?>
-                    <option value="<?php echo $row['regio']; ?>"><?php echo $row['regio']; ?></option>
+                  <option value="<?php echo $row['regio']; ?>"><?php echo $row['regio']; ?></option>
                 <?php endwhile; ?>
             </select>
 
             <label for="helyszin">Helyszín:</label>
             <select name="helyszin" id="helyszin">
                 <?php while($row = $helyszin_result->fetch_assoc()): ?>
-                    <option value="<?php echo $row['nev']; ?>"><?php echo $row['nev']; ?></option>
+                  <option value="<?php echo $row['nev']; ?>"><?php echo $row['nev']; ?></option>
                 <?php endwhile; ?>
             </select>
 
             <label for="toronyszam">Toronyszám:</label>
             <select name="toronyszam" id="toronyszam">
                 <?php while($row = $torony_result->fetch_assoc()): ?>
-                    <option value="<?php echo $row['darab']; ?>"><?php echo $row['darab']; ?></option>
+                  <option value="<?php echo $row['darab']; ?>"><?php echo $row['darab']; ?></option>
                 <?php endwhile; ?>
             </select>
 
             <input type="submit" value="Generálás">
-        </form>
+          </form>
+        </section>
+      </div>
     </div>
 
     <!-- Scripts -->

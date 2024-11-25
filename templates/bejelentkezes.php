@@ -47,8 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
-
-include __DIR__ . '/header.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -61,6 +59,7 @@ include __DIR__ . '/header.php';
     <link rel="stylesheet" href="/style.css">
 </head>
 <body class="is-preload">
+    <?php include __DIR__ . '/header.php'; ?>
 
     <!-- Header -->
     <div id="header">
@@ -75,7 +74,7 @@ include __DIR__ . '/header.php';
             <h2>Jelentkezz be, hogy hozzáférj a szélerőművekkel kapcsolatos információkhoz!</h2>
         </header>
 
-        <div class="box alt container">
+        <div class=" container">
             <section class="feature left">
                 <div class="content">
                     <form method="post" action="bejelentkezes.php">

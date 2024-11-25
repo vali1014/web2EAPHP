@@ -67,7 +67,7 @@ $conn->close();
             <h2>Regisztrálj, hogy hozzáférj a szélerőművekkel kapcsolatos információkhoz!</h2>
         </header>
 
-        <div class="box alt container">
+        <div class=" container">
             <section class="feature left">
                 <div class="content">
                     <form method="post" action="regisztracio.php">
