@@ -116,12 +116,13 @@ $title = "MNB";
                         echo "<script>console.log(" . json_encode($rates) . ");</script>";
 
                         // Adatok megjelenítése táblázatban
-                        echo "<table border='1'>";
-                        echo "<tr><th>Dátum</th><th>Árfolyam</th></tr>";
+                        echo "<table class='table default' border='1'>";
+                        echo "<thead><tr><th>Dátum</th><th>Árfolyam</th></tr></thead>";
+                        echo "<tbody>";
                         foreach ($rates as $date => $rate) {
                             echo "<tr><td>$date</td><td>$rate</td></tr>";
                         }
-                        echo "</table>";
+                        echo "</tbody></table>";
 
                         // Adatok átadása a JavaScript fájlnak
                         echo "<div id='chartLabels' style='display:none;'>" . json_encode(array_keys($rates)) . "</div>";

@@ -1,9 +1,10 @@
-input {
-    width: 100% !important;
-}
-
 table {
     th, td {
-        text-align: center;
+        text-align: center !important;
     }
+
+}
+
+table.default tbody tr:hover {
+    background: rgba(200, 200, 200, 0.75);
 }

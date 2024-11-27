@@ -156,9 +156,10 @@ INSERT INTO `menunevek` (`id`, `nev`, `link`, `parent_id`, `megjelenik`) VALUES
 (5, 'kapcsolat', 'kapcsolat.php', NULL, 'bejelentkezve'),
 (6, 'MNB', 'MNB.php', NULL, 'bejelentkezve'),
 (7, 'PDF', 'PDF.php', NULL, 'bejelentkezve'),
-(8, 'regisztráció', 'regisztracio.php', NULL, 'kijelentkezes'),
-(9, 'bejelentkezés', 'bejelentkezes.php', NULL, 'kijelentkezes'),
-(10, 'kijelentkezés', 'kijelentkezes.php', NULL, 'bejelentkezve');
+(8, 'helyszínek', 'helyszin.php', NULL, 'bejelentkezve'),
+(9, 'regisztráció', 'regisztracio.php', NULL, 'kijelentkezes'),
+(10, 'bejelentkezés', 'bejelentkezes.php', NULL, 'kijelentkezes'),
+(11, 'kijelentkezés', 'kijelentkezes.php', NULL, 'bejelentkezve');
 
 -- --------------------------------------------------------
 
