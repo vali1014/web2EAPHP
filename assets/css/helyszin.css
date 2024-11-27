@@ -2,6 +2,11 @@ input {
     width: 100% !important;
 }
 
+#addNew {
+    margin-bottom: 0.75em;
+    font-size: 0.6em;
+}
+
 table {
     th, td {
         text-align: center !important;

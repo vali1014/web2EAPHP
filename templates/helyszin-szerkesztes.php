@@ -31,24 +31,33 @@ if (session_status() == PHP_SESSION_NONE) {
     $curl = curl_init();
     $url = $_SERVER['REQUEST_URI'];
     $parts = parse_url($url);
-    parse_str($parts['query'], $query);
-    $id = $query['id'];
 
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => 'localhost:80/rest/helyszin-rest.php?id=' . $id,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-    ));
+    include "models.php";
 
-    $response = curl_exec($curl);
+    if (isset($parts['query'])) {
+        parse_str($parts['query'], $query);
+        $id = $query['id'];
 
-    curl_close($curl);
-    $response = json_decode($response);
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'localhost:80/rest/helyszin-rest.php?id=' . $id,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        $response = json_decode($response);
+
+        $helyszin = new Helyszin($response->id, $response->nev, $response->megyeid, null);
+    } else {
+      $helyszin = new Helyszin(null, "", -1, null);
+    }
 
     $megyeCurl = curl_init();
 
@@ -68,8 +77,6 @@ if (session_status() == PHP_SESSION_NONE) {
     curl_close($megyeCurl);
     $megyeResponse = json_decode($megyeResponse, true);
 
-    include "models.php";
-    $helyszin = new Helyszin($response->id, $response->nev, $response->megyeid, null);
     $megyek = [];
     foreach ($megyeResponse as $m) {
         $megye = new Megye($m["id"], $m["nev"], $m["regio"]);
@@ -104,20 +111,31 @@ if (session_status() == PHP_SESSION_NONE) {
         $('#submitButton').click( ev => {
             ev.preventDefault();
             const form = $('form')[0];
+            const id = $(form).find("#id").val();
 
-            $.ajax({
-                url: 'http://localhost:80/rest/helyszin-rest.php',
-                type: 'PUT',
-                dataType: 'json',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    "id": $(form).find("#id").val(),
-                    "nev": $(form).find("#nev").val(),
-                    "megyeid": $(form).find("#megyeid").val()
-                })
-            });
+            if (id !== '') {
+                $.ajax({
+                    url: 'http://localhost:80/rest/helyszin-rest.php',
+                    type: 'PUT',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        "id": id,
+                        "nev": $(form).find("#nev").val(),
+                        "megyeid": $(form).find("#megyeid").val()
+                    })
+                });
+            } else {
+                $.post('http://localhost:80/rest/helyszin-rest.php',
+                    JSON.stringify({
+                        "id": null,
+                        "nev": $(form).find("#nev").val(),
+                        "megyeid": $(form).find("#megyeid").val()
+                    })
+                );
+            }
 
-            location.href = "/templates/helyszin.php"
+            location.href = "helyszin.php"
         });
     });
 </script>

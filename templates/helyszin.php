@@ -53,7 +53,9 @@ if (session_status() == PHP_SESSION_NONE) {
           array_push($helyszinek, $helyszin);
         }
 
-        // adatok megjelenítése
+        echo "<button id='addNew' class='button'>Új hozzáadása</button>";
+
+        // helyszínek megjelenítése
         echo "<table class='table default' border='1'>";
         echo "<thead><tr><th>Id</th><th>Név</th><th>Megyenév</th><th>Akciók</th></tr></thead>";
         echo "<tbody>";
@@ -64,7 +66,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <td>".$h->megyenev."</td>
                     <td>
                         <button class='icon solid fa-edit edit' h-id='".$h->id."'></button>
-                        <button class='icon solid fa-times delete'></button>
+                        <button class='icon solid fa-times delete' h-id='".$h->id."'></button>
                     </td>
                 </tr>";
         }
@@ -80,9 +82,35 @@ if (session_status() == PHP_SESSION_NONE) {
 <script src="/assets/js/main.js"></script>
 <script>
     (function() {
-      const editButtons = document.getElementsByClassName('edit');
+        const addNewButton = document.getElementById("addNew");
+        addNewButton.addEventListener('click', redirectInit, false);
+
+        const editButtons = document.getElementsByClassName('edit');
         for (let i = 0; i < editButtons.length; i++) {
             editButtons[i].addEventListener('click', redirect, false);
+        }
+
+        const deleteButtons = document.getElementsByClassName('delete');
+        for (let i = 0; i < deleteButtons.length; i++) {
+            deleteButtons[i].addEventListener('click', deleteAndRefresh, false);
+        }
+
+        function redirectInit() {
+            window.location.href = "helyszin-szerkesztes.php";
+        }
+
+        function deleteAndRefresh(ev) {
+            let id = ev.target.attributes['h-id'].value;
+            $.ajax({
+                url: 'http://localhost:80/rest/helyszin-rest.php',
+                type: 'DELETE',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    "id": id
+                })
+            });
+            window.location.href = "helyszin.php";
         }
 
         function redirect(ev) {
