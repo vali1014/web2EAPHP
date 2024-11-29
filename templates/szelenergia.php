@@ -27,8 +27,9 @@ include __DIR__ . '/header.php';
             <h2>Fedezd fel a szélenergia hasznosításának lehetőségeit!</h2>
         </header>
 
-        <div class="box alt container">
-            <section class="feature left">
+        <div class=" container box">
+            <section class="feature right">
+                <a href="#" class="image icon solid fa-fan"><img src="/web2EAPHP/images/pic01.jpg" alt="" /></a>
                 <div class="content">
                     <h3>Szélenergia</h3>
                     <p>A szélenergia az egyik legfontosabb megújuló energiaforrás, amelyet szélturbinák segítségével hasznosítunk.</p>
@@ -46,5 +47,3 @@ include __DIR__ . '/header.php';
 
 </body>
 </html>
-
-<?php include __DIR__ . '/footer.php'; ?>

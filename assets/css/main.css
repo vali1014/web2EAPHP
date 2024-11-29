@@ -2504,7 +2504,6 @@ input, select, textarea {
 				letter-spacing: 0.125em;
 				line-height: 1.75em;
 				padding: 0.5em 1em 0.5em 1em;
-				text-align: left;
 				text-transform: uppercase;
 			}
 
@@ -2654,6 +2653,9 @@ input, select, textarea {
 			padding: 3.5em;
 			vertical-align: middle;
 			width: 48%;
+            overflow-y: auto;
+            height: inherit;
+            scroll-snap-type: y mandatory;
 		}
 
 			.feature .content h3 {
@@ -2677,10 +2679,6 @@ input, select, textarea {
 					top: 0;
 				}
 
-			.feature.left .content {
-				padding-right: 0;
-			}
-
 		.feature.right {
 			text-align: right;
 		}
@@ -2693,10 +2691,6 @@ input, select, textarea {
 					left: 0;
 					top: 0;
 				}
-
-			.feature.right .content {
-				padding-left: 0;
-			}
 
 		.feature.long .content {
 			padding-top: 0;

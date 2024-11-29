@@ -1,6 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $title = "Rólunk";
-include __DIR__ . '/header.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -13,32 +16,34 @@ include __DIR__ . '/header.php';
     <link rel="stylesheet" href="/web2EAPHP/style.css">
 </head>
 <body class="is-preload">
+    <?php include __DIR__ . '/header.php'; ?>
 
     <!-- Header -->
     <div id="header">
         <span class="logo icon fa-paper-plane"></span>
         <h1>Rólunk</h1>
-        <p>Üdvözöljük a projektünk oldalán!</p>
+        <p>Üdvözöllek a projektem oldalán!</p>
     </div>
 
     <!-- Main -->
     <div id="main">
-
         <header class="major container medium">
-            <h2>Webalkalmazásunkat a Web-Programozás II. kurzus sikeres teljesítéséhez készítettük.
+            <h2>Webalkalmazásomat a Web-Programozás II. kurzus sikeres teljesítéséhez készítettem.
             <br />
-            Projektünk a magyarországi szélerőművekkel foglalkozik.</h2>
+            Projektem a magyarországi szélerőművekkel foglalkozik.</h2>
         </header>
 
-        <div class="box alt container">
-            <section class="feature left">
+        <div class="container box">
+            <section class="feature right">
+                <a href="#" class="image icon solid fa-user-friends"><img src="/web2EAPHP/images/pic01.jpg" alt="" /></a>
                 <div class="content">
-                    <h3>Készítették:</h3>
-                    <p class="text-muted">Nevek</p>
+                    <h3>Készítette:</h3>
+                    <p class="text-muted">Dunai Valéria</p>
                     <p class="text-muted">Neumann János Egyetem, Kecskemét</p>
                 </div>
             </section>
-            <section class="feature right">
+            <section class="feature left">
+                <a href="#" class="image icon solid fa-database"><img src="/web2EAPHP/images/pic02.jpg" alt="" /></a>
                 <div class="content">
                     <h3>Választott adatbázis:</h3>
                     <p class="text-muted">Szélerőművek</p>
@@ -57,5 +62,3 @@ include __DIR__ . '/header.php';
 
 </body>
 </html>
-
-<?php include __DIR__ . '/footer.php'; ?>

@@ -1,17 +1,30 @@
 body {
     font-family: Arial, sans-serif;
-    background: url('/web2EAPHP/images/szeleromuvek.png') no-repeat center center fixed;
+    background: url('/images/szeleromuvek.png') no-repeat center center fixed;
     background-size: cover;
     padding-top: 50px; /* Igazítsd a menü magasságához */
 }
 
 /* Konténer stílusok */
-.container {
+#main {
     max-width: 1200px; /* Maximális szélesség beállítása */
     margin: 0 auto; /* Középre igazítás */
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8); /* Fehér háttér enyhe átlátszósággal */
-    border-radius: 10px; /* Lekerekített sarkok */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-bottomleft: 10px; /* Lekerekített sarkok */
+    -moz-border-radius-bottomright: 10px; /* Lekerekített sarkok */
+}
+
+.feature .content > * {
+    scroll-margin: 20px;
+}
+
+.feature a {
+    cursor: default;
 }
 
 h1 {
@@ -76,9 +89,4 @@ p {
 
 .menu ul ul li {
     display: block;
-}
-
-/* Tartalom eltolása a menü alatt */
-body {
-    padding-top: 50px; /* Igazítsd a menü magasságához */
 }

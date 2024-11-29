@@ -1,20 +1,14 @@
 <?php
-$title = "Regisztráció";
-include __DIR__ . '/header.php';
-?>
-
-<?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "szeleromuvek";
+$title = "Regisztráció";
+include __DIR__ . '/header.php';
+require_once "../config/config.php";
 
 // Kapcsolódás az adatbázishoz
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
 
 // Kapcsolat ellenőrzése
 if ($conn->connect_error) {
@@ -73,7 +67,7 @@ $conn->close();
             <h2>Regisztrálj, hogy hozzáférj a szélerőművekkel kapcsolatos információkhoz!</h2>
         </header>
 
-        <div class="box alt container">
+        <div class=" container">
             <section class="feature left">
                 <div class="content">
                     <form method="post" action="regisztracio.php">
@@ -99,5 +93,3 @@ $conn->close();
 
 </body>
 </html>
-
-<?php include __DIR__ . '/footer.php'; ?>

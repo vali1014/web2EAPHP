@@ -1,15 +1,8 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "szeleromuvek";
 
 // Kapcsolódás az adatbázishoz
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
+$conn->set_charset("utf8");
 
 // Kapcsolat ellenőrzése
 if ($conn->connect_error) {
@@ -37,11 +30,10 @@ if (!function_exists('renderMenu')) {
         echo '<nav class="menu"><ul>';
         foreach ($menu as $item) {
             $show_item = false;
-            if ($item['megjelenik'] == 'mindig') {
-                $show_item = true;
-            } elseif ($item['megjelenik'] == 'bejelentkezve' && isset($_SESSION['nev'])) {
-                $show_item = true;
-            } elseif ($item['megjelenik'] == 'kijelentkezes' && !isset($_SESSION['nev'])) {
+            if ($item['megjelenik'] == 'mindig'
+                || ( $item['megjelenik'] == 'bejelentkezve' && isset($_SESSION['nev']) )
+                || ( $item['megjelenik'] == 'kijelentkezes' && !isset($_SESSION['nev']) )
+            ) {
                 $show_item = true;
             }
 
@@ -65,4 +57,3 @@ if (!function_exists('renderMenu')) {
 renderMenu($menu);
 
 $conn->close();
-?>

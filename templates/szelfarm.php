@@ -1,6 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $title = "Szélfarm";
-include __DIR__ . '/header.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -13,6 +16,7 @@ include __DIR__ . '/header.php';
     <link rel="stylesheet" href="/web2EAPHP/style.css">
 </head>
 <body class="is-preload">
+    <?php include __DIR__ . '/header.php'; ?>
 
     <!-- Header -->
     <div id="header">
@@ -27,8 +31,9 @@ include __DIR__ . '/header.php';
             <h2>Ismerd meg a szélfarmok működését és előnyeit!</h2>
         </header>
 
-        <div class="box alt container">
-            <section class="feature left">
+        <div class=" container box">
+            <section class="feature right">
+                <a href="#" class="image icon solid fa-info"><img src="/web2EAPHP/images/pic01.jpg" alt="" /></a>
                 <div class="content">
                     <h3>Szélfarmok</h3>
                     <p>A szélfarmok olyan területek, ahol több szélturbina együttesen termel elektromos áramot.</p>
@@ -46,5 +51,3 @@ include __DIR__ . '/header.php';
 
 </body>
 </html>
-
-<?php include __DIR__ . '/footer.php'; ?>

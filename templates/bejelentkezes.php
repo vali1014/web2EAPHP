@@ -1,20 +1,14 @@
 <?php
-$title = "Bejelentkezés";
-include __DIR__ . '/header.php';
-?>
-
-<?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "szeleromuvek";
+$title = "Bejelentkezés";
+
+require_once "../config/config.php";
 
 // Kapcsolódás az adatbázishoz
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
 
 // Kapcsolat ellenőrzése
 if ($conn->connect_error) {
@@ -42,8 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $update_sql = "UPDATE felhasznalok SET bejelentkezve = TRUE WHERE id = " . $row['id'];
             $conn->query($update_sql);
 
-            header("Location: /web2EAPHP/index.php"); // Irányítás a főoldalra
-            exit;
+            header("Location: /web2EAPHP/index.php");
+            exit();
         } else {
             $message = "Hibás jelszó";
         }
@@ -65,6 +59,7 @@ $conn->close();
     <link rel="stylesheet" href="/web2EAPHP/style.css">
 </head>
 <body class="is-preload">
+    <?php include __DIR__ . '/header.php'; ?>
 
     <!-- Header -->
     <div id="header">
@@ -79,7 +74,7 @@ $conn->close();
             <h2>Jelentkezz be, hogy hozzáférj a szélerőművekkel kapcsolatos információkhoz!</h2>
         </header>
 
-        <div class="box alt container">
+        <div class=" container">
             <section class="feature left">
                 <div class="content">
                     <form method="post" action="bejelentkezes.php">
@@ -104,5 +99,3 @@ $conn->close();
 
 </body>
 </html>
-
-<?php include __DIR__ . '/footer.php'; ?>
