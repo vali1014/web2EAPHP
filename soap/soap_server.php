@@ -33,8 +33,8 @@ class SzeleromuvekService {
 }
 
 $options = [
-    'uri' => 'http://localhost/soap_server.php',
-    'location' => 'http://localhost/soap_server.php'
+    'uri' => 'http://localhost/web2EAPHP/soap_server.php',
+    'location' => 'http://localhost/web2EAPHP/soap_server.php'
 ];
 
 $server = new SoapServer(null, $options);
