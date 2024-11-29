@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $update_sql = "UPDATE felhasznalok SET bejelentkezve = TRUE WHERE id = " . $row['id'];
             $conn->query($update_sql);
 
-            header("Location: /index.php");
+            header("Location: /web2EAPHP/index.php");
             exit();
         } else {
             $message = "Hibás jelszó";
@@ -55,8 +55,8 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title><?php echo $title; ?></title>
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/web2EAPHP/assets/css/main.css" />
+    <link rel="stylesheet" href="/web2EAPHP/style.css">
 </head>
 <body class="is-preload">
     <?php include __DIR__ . '/header.php'; ?>
@@ -91,11 +91,11 @@ $conn->close();
     </div>
 
     <!-- Scripts -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/browser.min.js"></script>
-    <script src="/assets/js/breakpoints.min.js"></script>
-    <script src="/assets/js/util.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="/web2EAPHP/assets/js/jquery.min.js"></script>
+    <script src="/web2EAPHP/assets/js/browser.min.js"></script>
+    <script src="/web2EAPHP/assets/js/breakpoints.min.js"></script>
+    <script src="/web2EAPHP/assets/js/util.js"></script>
+    <script src="/web2EAPHP/assets/js/main.js"></script>
 
 </body>
 </html>

@@ -10,9 +10,9 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title>Helyszínek</title>
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/assets/css/helyszin.css" />
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/web2EAPHP/assets/css/main.css" />
+    <link rel="stylesheet" href="/web2EAPHP/assets/css/helyszin.css" />
+    <link rel="stylesheet" href="/web2EAPHP/style.css">
 </head>
 <body class="is-preload">
 <?php include __DIR__ . '/header.php';?>
@@ -30,7 +30,7 @@ if (session_status() == PHP_SESSION_NONE) {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'localhost:80/rest/helyszin-rest.php',
+            CURLOPT_URL => 'localhost:80/web2EAPHP/rest/helyszin-rest.php',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -75,11 +75,11 @@ if (session_status() == PHP_SESSION_NONE) {
 </div>
 
 <!-- Scripts -->
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/browser.min.js"></script>
-<script src="/assets/js/breakpoints.min.js"></script>
-<script src="/assets/js/util.js"></script>
-<script src="/assets/js/main.js"></script>
+<script src="/web2EAPHP/assets/js/jquery.min.js"></script>
+<script src="/web2EAPHP/assets/js/browser.min.js"></script>
+<script src="/web2EAPHP/assets/js/breakpoints.min.js"></script>
+<script src="/web2EAPHP/assets/js/util.js"></script>
+<script src="/web2EAPHP/assets/js/main.js"></script>
 <script>
     (function() {
         const addNewButton = document.getElementById("addNew");
@@ -102,7 +102,7 @@ if (session_status() == PHP_SESSION_NONE) {
         function deleteAndRefresh(ev) {
             let id = ev.target.attributes['h-id'].value;
             $.ajax({
-                url: 'http://localhost:80/rest/helyszin-rest.php',
+                url: 'http://localhost:80/web2EAPHP/rest/helyszin-rest.php',
                 type: 'DELETE',
                 dataType: 'json',
                 contentType: 'application/json',

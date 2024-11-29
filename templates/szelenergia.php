@@ -9,8 +9,8 @@ include __DIR__ . '/header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title><?php echo $title; ?></title>
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/web2EAPHP/assets/css/main.css" />
+    <link rel="stylesheet" href="/web2EAPHP/style.css">
 </head>
 <body class="is-preload">
 
@@ -29,7 +29,7 @@ include __DIR__ . '/header.php';
 
         <div class=" container box">
             <section class="feature right">
-                <a href="#" class="image icon solid fa-fan"><img src="/images/pic01.jpg" alt="" /></a>
+                <a href="#" class="image icon solid fa-fan"><img src="/web2EAPHP/images/pic01.jpg" alt="" /></a>
                 <div class="content">
                     <h3>Szélenergia</h3>
                     <p>A szélenergia az egyik legfontosabb megújuló energiaforrás, amelyet szélturbinák segítségével hasznosítunk.</p>
@@ -39,11 +39,11 @@ include __DIR__ . '/header.php';
     </div>
 
     <!-- Scripts -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/browser.min.js"></script>
-    <script src="/assets/js/breakpoints.min.js"></script>
-    <script src="/assets/js/util.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="/web2EAPHP/assets/js/jquery.min.js"></script>
+    <script src="/web2EAPHP/assets/js/browser.min.js"></script>
+    <script src="/web2EAPHP/assets/js/breakpoints.min.js"></script>
+    <script src="/web2EAPHP/assets/js/util.js"></script>
+    <script src="/web2EAPHP/assets/js/main.js"></script>
 
 </body>
 </html>

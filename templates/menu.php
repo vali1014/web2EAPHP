@@ -39,11 +39,11 @@ if (!function_exists('renderMenu')) {
 
             if ($show_item) {
                 echo '<li>';
-                echo '<a href="/templates/' . $item['link'] . '">' . $item['nev'] . '</a>';
+                echo '<a href="/web2EAPHP/templates/' . $item['link'] . '">' . $item['nev'] . '</a>';
                 if (!empty($item['children'])) {
                     echo '<ul>';
                     foreach ($item['children'] as $child) {
-                        echo '<li><a href="/templates/' . $child['link'] . '">' . $child['nev'] . '</a></li>';
+                        echo '<li><a href="/web2EAPHP/templates/' . $child['link'] . '">' . $child['nev'] . '</a></li>';
                     }
                     echo '</ul>';
                 }
